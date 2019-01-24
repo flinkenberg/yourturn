@@ -11,16 +11,18 @@
   text-align: center;
 }
 .block_single button {
-  display: block;
+  display: inline-block;
   width: 2rem;
   height: 2rem;
-  font-size: 1rem;
+  /* padding: 0 0.75rem; */
+  font-size: 0.85rem;
+  text-transform: uppercase;
   line-height: 1rem;
   border: 2px solid lightgrey;
   color: lightgrey;
   font-weight: bold;
   background: none;
-  border-radius: 50%;
+  border-radius: 1rem;
   cursor: pointer;
   outline: none;
 }
@@ -31,7 +33,7 @@
 .block_single_one {
   margin: 0 auto;
   width: 20rem;
-  height: 15rem;
+  /* height: 15rem; */
   font-size: 6rem;
   color: black;
   grid-row: 2;
@@ -44,7 +46,7 @@
 .block_single_two {
   margin: 0 auto;
   width: 15rem;
-  height: 10rem;
+  /* height: 10rem; */
   font-size: 2rem;
   /* font-style: italic; */
   color: darkgrey;

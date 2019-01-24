@@ -46,6 +46,7 @@ function App() {
         <div />
       </div>
       <div className={AbsentStyles.absent_wrap}>
+        Absent:{" "}
         {absent.map((id: number) => {
           const person = people.find(p => p.id === id);
           return (

@@ -18,6 +18,7 @@ function Block(props: BlockProps) {
   function toggleInfo() {
     setState({ isInfoOpen: !state.isInfoOpen });
   }
+  const lastDate = new Date(person.last).toLocaleDateString();
   return (
     <div
       className={`${BlockStyles.block_single} ${
@@ -43,10 +44,15 @@ function Block(props: BlockProps) {
             </div>
           )}
           {markAsAbsent && (
-            <button onClick={() => markAsAbsent(person.id)}>X</button>
+            <div>
+              <button onClick={() => markAsAbsent(person.id)}>X</button>
+            </div>
           )}
         </>
       )}
+      <h3>
+        Last: <small>{lastDate}</small>
+      </h3>
     </div>
   );
 }
