@@ -1,0 +1,71 @@
+.block_single {
+  overflow: hidden;
+  position: relative;
+  display: grid;
+  align-content: center;
+  justify-content: center;
+  padding: 1rem;
+  font-weight: bold;
+  user-select: none;
+  cursor: pointer;
+  text-align: center;
+}
+.block_single button {
+  display: block;
+  width: 2rem;
+  height: 2rem;
+  font-size: 1rem;
+  line-height: 1rem;
+  border: 2px solid lightgrey;
+  color: lightgrey;
+  font-weight: bold;
+  background: none;
+  border-radius: 50%;
+  cursor: pointer;
+  outline: none;
+}
+.block_single button:hover {
+  border-color: inherit;
+  color: inherit;
+}
+.block_single_one {
+  margin: 0 auto;
+  width: 20rem;
+  height: 15rem;
+  font-size: 6rem;
+  color: black;
+  grid-row: 2;
+  /* border: 1px solid;
+  border-radius: 0.75rem; */
+}
+.block_single_one:hover {
+  color: initial;
+}
+.block_single_two {
+  margin: 0 auto;
+  width: 15rem;
+  height: 10rem;
+  font-size: 2rem;
+  /* font-style: italic; */
+  color: darkgrey;
+  grid-row: 1;
+}
+.block_single h3 {
+  font-size: 1rem;
+  font-style: italic;
+  font-weight: normal;
+}
+.block_single_two h3 {
+  font-size: 0.8rem;
+}
+.block_single p {
+  font-size: 0.9rem;
+  font-weight: normal;
+}
+.block_single_coffee_counter {
+  /* position: absolute; */
+  display: grid;
+  grid-auto-flow: column;
+  grid-gap: 0.5rem;
+  font-size: 1.5rem;
+}

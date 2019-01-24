@@ -1,0 +1,20 @@
+.absent_wrap {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: max-content;
+  grid-gap: 1.5rem;
+  width: 50vw;
+  padding: 2rem 0;
+  align-content: center;
+  justify-content: center;
+  margin: 0 auto;
+  color: lightgrey;
+  font-style: italic;
+  font-size: 1.5rem;
+}
+.absent_single {
+  cursor: pointer;
+}
+.absent_single:hover {
+  color: black;
+}

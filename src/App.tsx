@@ -1,104 +1,68 @@
-import React from "react";
-import { usePeople } from "./hooks";
+import React, { useState } from "react";
+import { usePeople, Person } from "./people";
+import AppStyles from "./styles/App.module.css";
+import AbsentStyles from "./styles/Absent.module.css";
+import Block from "./modules/Block";
 
-function SuperAdmin() {
+function App() {
+  const initialState: number[] = [];
   const [people, addPerson, markAsComplete] = usePeople();
+  const [absent, setAbsent] = useState(initialState);
   function getInputValue(e: any) {
     if (e) e.preventDefault();
     const [input] = e.currentTarget.children;
     addPerson(input.value);
   }
-  const styles = {
-    display: "grid",
-    gridGap: "1rem",
-    padding: "2rem",
-    border: "1px solid",
-    cursor: "pointer"
-  };
+  function addAbsent(id: number) {
+    if (!absent.includes(id)) setAbsent([...absent, id]);
+  }
+  function removeAbsent(id: number) {
+    if (absent.includes(id))
+      setAbsent([...absent.filter((idd: number) => id !== idd)]);
+  }
   return (
-    <div style={{ padding: "0 2rem" }}>
-      <section>
-        <div
-          style={{
-            display: "grid",
-            gridAutoFlow: "column",
-            gridGap: "1rem",
-            gridAutoColumns: "max-content"
-          }}
-        >
-          {/* {people.map(p => (
-              <div onClick={() => markAsComplete(p.id)} style={styles}>
-                <h1>{p.name}</h1>
-                <h2>{p.score}</h2>
-                <code style={{ color: "darkblue", background: "lightblue", padding: "1rem", maxWidth: "5rem" }}>
-                  {JSON.stringify(p, null, 2)}
-                </code>
-              </div>
-            ))} */}
-          {people.length > 1 && (
-            <>
-              {people.length > 2 && (
-                <div
-                  onClick={() => markAsComplete(people[people.length - 1].id)}
-                  style={styles}
-                >
-                  <h1>{people[people.length - 1].name}</h1>
-                  <h2>{people[people.length - 1].score}</h2>
-                  <code
-                    style={{
-                      color: "darkblue",
-                      background: "lightblue",
-                      padding: "1rem",
-                      maxWidth: "5rem"
-                    }}
-                  >
-                    {JSON.stringify(people[people.length - 1], null, 2)}
-                  </code>
-                </div>
-              )}
-              <div style={{ border: "1px solid blue" }}>
-                <div
-                  onClick={() => markAsComplete(people[0].id)}
-                  style={styles}
-                >
-                  <h1>{people[0].name}</h1>
-                  <h2>{people[0].score}</h2>
-                  <code
-                    style={{
-                      color: "darkblue",
-                      background: "lightblue",
-                      padding: "1rem",
-                      maxWidth: "5rem"
-                    }}
-                  >
-                    {JSON.stringify(people[0], null, 2)}
-                  </code>
-                </div>
-              </div>
-
-              <div onClick={() => markAsComplete(people[1].id)} style={styles}>
-                <h1>{people[1].name}</h1>
-                <h2>{people[1].score}</h2>
-                <code
-                  style={{
-                    color: "darkblue",
-                    background: "lightblue",
-                    padding: "1rem",
-                    maxWidth: "5rem"
-                  }}
-                >
-                  {JSON.stringify(people[1], null, 2)}
-                </code>
-              </div>
-            </>
-          )}
-        </div>
-        <form onSubmit={getInputValue}>
-          <input type="text" />
-        </form>
-      </section>
+    <div>
+      <div className={AppStyles.app_wrap}>
+        {people
+          .filter((p: Person, i: number) => !absent.includes(p.id))
+          .map((p: Person, i: number) => {
+            if (i === 0) {
+              return (
+                <Block
+                  index={i}
+                  person={p}
+                  markAsComplete={markAsComplete}
+                  markAsAbsent={
+                    absent.length < people.length - 1 ? addAbsent : undefined
+                  }
+                />
+              );
+            } else if (i === 1) {
+              return (
+                <Block index={i} person={p} markAsComplete={markAsComplete} />
+              );
+            } else return null;
+          })}
+        <div />
+      </div>
+      <div className={AbsentStyles.absent_wrap}>
+        {absent.map((id: number) => {
+          const person = people.find(p => p.id === id);
+          return (
+            <div
+              onClick={() => removeAbsent(id)}
+              className={AbsentStyles.absent_single}
+            >
+              {person ? person.name : null}
+            </div>
+          );
+        })}
+      </div>
+      <form onSubmit={getInputValue}>
+        <input type="text" />
+      </form>
     </div>
   );
 }
 
-export default SuperAdmin;
+export default App;

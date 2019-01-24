@@ -1,0 +1,13 @@
+.app_wrap {
+  display: grid;
+  width: 100vw;
+  height: 50vh;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+  grid-auto-flow: row;
+  grid-template-rows: 1fr 1fr;
+  margin: 0 auto;
+  grid-gap: 1rem;
+  text-align: center;
+}
